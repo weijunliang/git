@@ -1,0 +1,145 @@
+﻿!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>瑞思学科英语体验课在线申请</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" href="./css/swiper-3.4.2.min.css" />
+	<link rel="stylesheet" href="./css/main.css" />
+	<link rel="stylesheet" href="./css/flex.css" />
+	<link rel="stylesheet" href="./css/index.css" />
+	<script src="./js/fontsize.js"></script>
+	<script >
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?d29ba8a0138a36322a7ea0a2d53c7f87";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+</head>
+
+<body id="body">
+	<div id="app" v-cloak>
+		<div v-show="!tips">
+			<div class="header" flex="cross:center">
+				<div class="tab" flex-box="1" @click="tabClick(index)" flex="main:center cross:center dir:top" v-for="(item,index) in tabArr" :class="{'chosed':colorIndex==index}">
+					<img :src="'./images/'+(index*1+1)+'-'+(colorIndex==index?2:1)+'.png'">
+					<span v-text="item.title">试听课</span>
+				</div>
+			</div>
+			<div class="section">
+				<div v-if="colorIndex==0">
+					<div class="swiper-container swiper-container0">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<img class="banner" src="./images/1.png">
+							</div>
+							<div class="swiper-slide"><img class="banner" src="./images/2.png"></div>
+							<div class="swiper-slide"><img class="banner" src="./images/3.png"></div>
+						</div>
+						<div class="swiper-pagination"></div>
+					</div>
+					<div class="banberInfo" flex="cross:center dir:top">
+						<div class="title" v-text="auditionsArr[auditionsIndex].title">
+							3-5岁 美国幼儿园体验课程
+						</div>
+						<div class="desc" v-html="auditionsArr[auditionsIndex].desc" :class="{'lineHeight':auditionsIndex==2}">
+							· 玩中学课堂，激发英语兴趣
+							<br> · 鼓励式教学，克服初学焦虑
+							<br> · 尝试小演讲，口语自信表达
+							<br> · 区角小任务，尊重孩子性格
+						</div>
+					</div>
+					<div class="bannerDesc" flex="main:center cross:center">
+						<span class="slash1"></span>
+						<span class="slash2"></span> 免费领取价值
+						<span class="price">500</span>元美式主题课
+						<span class="slash2"></span>
+						<span class="slash1"></span>
+					</div>
+				</div>
+				<div v-if="colorIndex==1">
+					<div class="swiper-container swiper-container1">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide" v-for="(item,index) in videoArr">
+								<div v-show="!item.show">
+									<img class="banner" :src="'./images/'+(index*1+4)+'.png'">
+									<img @click="playVideo(item,index)" class="play" src="./images/play.png">
+								</div>
+								<video ref="video" webkit-playsinline="true" playsinline="true" v-show="item.show" class="video-player" preload controls>
+									<source :src="'http://media.bestjlb.com/class'+(index*1+2)+'.mp4'">
+								</video>
+							</div>
+						</div>
+						<div class="swiper-pagination"></div>
+					</div>
+					<div class="styleTitle" flex="main:center cross:center" v-html="studentArr[studentIndex].title">
+					</div>
+					<div class="styleDesc" flex="cross:center" v-html="studentArr[studentIndex].desc" :class="{'lineHeight':studentIndex==3}">
+					</div>
+				</div>
+				<div v-show="colorIndex==2" class="lesson">
+					<img src="./images/9.png">
+					<div class="styleTitle" flex="main:center cross:center">
+						3-18岁儿童、青少年10级螺旋式上升课程体系
+					</div>
+					<div class="styleDesc" flex="cross:center">
+						· 同质同步美国课堂
+						<br> · 学科式英语，语文+数学+科学
+						<br> · 英语二母语思维，解决实际问题
+						<br> · 未来领导力，精英化人才素养
+					</div>
+				</div>
+				<div v-show="colorIndex==3" class="about">
+					<img src="./images/8.png">
+					<div class="styleTitle" flex="main:center cross:center">
+						3-18岁 | 浸入式英语教学 | 学科英语 | 未来领导力
+					</div>
+					<div class="styleDesc" flex="cross:center">
+						· 开创“学科英语”新教育模式
+						<br> · 美式教育领航者
+						<br> · 构建“学科英语”标准
+						<br> · 全国三百余家校区，数十万名学员
+						<br> · 国家"十二五"规划课题《基于学科内容的英语教学研究不实践》结题
+					</div>
+				</div>
+			</div>
+			<div class="footer" flex="main:center cross:center">
+				<div class="btn" flex="main:center cross:center">
+					<span v-if="colorIndex==0" @click="tips=true">马上领取</span>
+					<span v-else @click="tips=true">立即申请</span>
+				</div>
+			</div>
+		</div>
+		<div v-show="tips" class="tips">
+			<img src="./images/10.png">
+			<div class="margin" flex="cross:center">
+				<span class="label">宝宝姓名</span>
+				<input type="text" class="txt" maxlength="20" name="names" v-model="userInfo.names">
+			</div>
+			<div class="margin" flex="cross:center">
+				<span class="label">家长电话</span>
+				<input type="text" class="txt" maxlength="14" name="tel"  v-model="userInfo.tel">
+			</div>
+			<div class="margin" flex="cross:center">
+				<span class="label">宝宝年龄</span>
+				<div flex>
+					<span class="age" @click="ageIndex=index" v-for="(item,index) in ageArr" :class="{'chosed':ageIndex==index}" ><input v-if="ageIndex==index" type="hidden"  v-model="userInfo.age = item" name="age"> {{ item }}</span>
+				</div>
+			</div>
+			<div flex="main:center cross:center" style="text-align: center">
+				<div @click="saveInfo" class="btn" >立即申请<div>
+			</div>
+		</div>
+	</div>
+</body>
+
+
+</html>
+
+<script src="./js/vue.min.js" type="text/javascript"></script>
+<script src="./js/swiper-3.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./js/axios.js" type="text/javascript"></script>
+<script src="./js/index.js" type="text/javascript" charset="utf-8"></script>
