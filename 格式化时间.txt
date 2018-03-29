@@ -12,7 +12,7 @@ function Todate(num) { //Fri Oct 31 18:00:00 UTC+0800 2008
     return date;
 }
 
-
+12312312312312
 
 
 //时间戳返回格式化的时间
